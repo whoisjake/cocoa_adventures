@@ -1,0 +1,11 @@
+*~
+.DS_Store
++*#
+.#*
+*.swp
+._*
+
+RandomApp/build
+RandomApp/RandomApp.xcodeproj/jake.*
+lottery/build
+lottery/lottery.xcodeproj/jake.*
