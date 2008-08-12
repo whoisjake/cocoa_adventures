@@ -21,9 +21,7 @@
 		return;
 	}
 	
-	NSString *resultString = [[NSString alloc] initWithFormat:
-							  @"'%@' has %d characters.",target,len];
-	[countLabel setStringValue:resultString];
+	[countLabel setStringValue:[NSString stringWithFormat:@"'%@' has %d characters.",target,len]];
 }
 
 @end

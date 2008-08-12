@@ -21,14 +21,23 @@
 		return nil;
 	
 	NSAssert(theDate != nil, @"Argument must be non-nil");
-	entryDate = theDate;
+	entryDate = [theDate retain];
 	firstNumber = random() % 100 + 1;
 	secondNumber = random() % 100 + 1;
 	return self;
 }
 
+- (void) dealloc
+{
+	NSLog(@"deallocing %@", self);
+	[entryDate release];
+	[super dealloc];
+}
+
 - (void) setEntryDate:(NSCalendarDate *) date
 {
+	[date retain];
+	[entryDate release];
 	entryDate = date;
 }
 
@@ -49,11 +58,8 @@
 
 - (NSString *) description
 {
-	NSString *result;
-	result = [[NSString alloc] initWithFormat:@"%@ = %d and %d", 
-			  [entryDate descriptionWithCalendarFormat:@"%b %d %Y"], 
-			  firstNumber, secondNumber];
-	return result;
+	return [NSString stringWithFormat:@"%@ = %d and %d",
+			[self entryDate], [self firstNumber], [self secondNumber]];
 }
 
 @end
