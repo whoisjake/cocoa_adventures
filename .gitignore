@@ -5,11 +5,5 @@
 *.swp
 ._*
 
-RandomApp/build
-RandomApp/RandomApp.xcodeproj/jake.*
-lottery/build
-lottery/lottery.xcodeproj/jake.*
-SpeakLine/build
-SpeakLine/SpeakLine.xcodeproj/jake.*
-CharacterCounter/build
-CharacterCounter/CharacterCounter.xcodeproj/jake.*
+*/build
+*/*.xcodeproj/jake.*
