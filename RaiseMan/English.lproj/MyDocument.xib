@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="100024"/>
+			<integer value="100026"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -126,9 +126,9 @@
 													<bool key="NSIsEditable">YES</bool>
 													<reference key="NSTableView" ref="978255597"/>
 													<object class="NSSortDescriptor" key="NSSortDescriptorPrototype">
-														<string key="NSKey">personName</string>
+														<string key="NSKey">personName.length</string>
 														<bool key="NSAscending">YES</bool>
-														<string key="NSSelector">caseInsensitiveCompare:</string>
+														<string key="NSSelector">compare:</string>
 													</object>
 												</object>
 												<object class="NSTableColumn" id="169849199">
