@@ -78,6 +78,21 @@
 	[person setValue:anObject forKey:identifier];
 }
 
+- (void)tableView:(NSTableView *)aTableView 
+	sortDescriptorsDidChange:(NSArray *)oldDescriptors
+{
+	NSArray *newDescriptors = [tableView sortDescriptors];
+	[employees sortUsingDescriptors:newDescriptors];
+	[tableView reloadData];
+}
+
+- (BOOL) respondsToSelector:(SEL)aSelector
+{
+	NSString *methodName = NSStringFromSelector(aSelector);
+	NSLog(@"respondsToSelector:%@",methodName);
+	return [super respondsToSelector:aSelector];
+}
+
 
 - (NSString *)windowNibName
 {
