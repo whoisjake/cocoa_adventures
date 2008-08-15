@@ -13,7 +13,7 @@
 - (id) init
 {
 	[super init];
-	expectedRaise = 5.0;
+	expectedRaise = 0.05;
 	personName = @"New Person";
 	return self;
 }
