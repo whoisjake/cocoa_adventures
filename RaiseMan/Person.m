@@ -18,6 +18,14 @@
 	return self;
 }
 
+- (id) initWithCoder:(NSCoder *)coder
+{
+	[super init];
+	personName = [[coder decodeObjectForKey:@"personName"] retain];
+	expectedRaise = [coder decodeFloatForKey:@"expectedRaise"];
+	return self;
+}
+
 - (void) dealloc
 {
 	[personName release];
@@ -31,6 +39,12 @@
 	} else {
 		[super setNilValueForKey:key];
 	}
+}
+
+- (void) encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:personName forKey:@"personName"];
+	[coder encodeFloat:expectedRaise forKey:@"expectedRaise"];
 }
 
 @synthesize personName;

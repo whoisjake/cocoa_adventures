@@ -20,13 +20,13 @@
     return self;
 }
 
-- (void) dealloc
+- (void)dealloc
 {
 	[self setEmployees:nil];
 	[super dealloc];
 }
 
-- (void) setEmployees:(NSMutableArray *) a
+- (void)setEmployees:(NSMutableArray *)a
 {
 	if (a == employees)
 		return;
@@ -42,7 +42,8 @@
 		[self startObservingPerson:person];
 }
 
-- (void) insertObject:(Person *)p inEmployeesAtIndex:(int)index
+- (void)insertObject:(Person *)p 
+  inEmployeesAtIndex:(int)index
 {
 	NSLog(@"adding %@ to %@", p, employees);
 	// Add the inverse of this operation to the undo stack
@@ -57,7 +58,7 @@
 	[employees insertObject:p atIndex:index];
 }
 
-- (void) removeObjectFromEmployeesAtIndex:(int)index
+- (void)removeObjectFromEmployeesAtIndex:(int)index
 {
 	Person *p = [employees objectAtIndex:index];
 	NSLog(@"removing %@ from %@", p, employees);
@@ -72,19 +73,19 @@
 	[employees removeObjectAtIndex:index];
 }
 
-- (void) stopObservingPerson:(Person *) person
+- (void)stopObservingPerson:(Person *)person
 {
 	[person removeObserver:self	forKeyPath:@"personName"];
 	[person removeObserver:self forKeyPath:@"expectedRaise"];
 }
 
-- (void) startObservingPerson:(Person *) person
+- (void)startObservingPerson:(Person *)person
 {
 	[person addObserver:self forKeyPath:@"personName" options:NSKeyValueObservingOptionOld context:NULL];
 	[person addObserver:self forKeyPath:@"expectedRaise" options:NSKeyValueObservingOptionOld context:NULL];
 }
 
-- (void) changeKeyPath:(NSString *)keyPath
+- (void)changeKeyPath:(NSString *)keyPath
 			  ofObject:(id)obj
 			   toValue:(id)newValue
 {
@@ -151,6 +152,39 @@
 				   select:YES];
 }
 
+- (NSData *)dataOfType:(NSString *)aType
+				 error:(NSError *)outError
+{
+	// End editing
+	[[tableView window] endEditingFor:nil];
+	
+	// Create an NSData object from the employees array
+	return [NSKeyedArchiver archivedDataWithRootObject:employees];
+}
+
+- (BOOL)readFromData:(NSData *)data 
+			  ofType:(NSString *)typeName 
+			   error:(NSError **)outError
+{
+    NSLog(@"About to read data of type %@", typeName);
+	NSMutableArray *newArray = nil;
+	
+	@try {
+		newArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+	}
+	@catch (NSException *e) {
+		if (outError)
+		{
+			NSDictionary *d = [NSDictionary dictionaryWithObject:@"The data is corrupted." forKey:NSLocalizedFailureReasonErrorKey];
+			*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:d];
+		}
+		return NO;
+	}
+	
+	[self setEmployees:newArray];
+	return YES;
+}
+
 - (NSString *)windowNibName
 {
     // Override returning the nib file name of the document
@@ -162,34 +196,6 @@
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
-}
-
-- (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
-{
-    // Insert code here to write your document to data of the specified type. If the given outError != NULL, ensure that you set *outError when returning nil.
-
-    // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-
-    // For applications targeted for Panther or earlier systems, you should use the deprecated API -dataRepresentationOfType:. In this case you can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
-
-    if ( outError != NULL ) {
-		*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
-	}
-	return nil;
-}
-
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
-{
-    // Insert code here to read your document from the given data of the specified type.  If the given outError != NULL, ensure that you set *outError when returning NO.
-
-    // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead. 
-    
-    // For applications targeted for Panther or earlier systems, you should use the deprecated API -loadDataRepresentation:ofType. In this case you can also choose to override -readFromFile:ofType: or -loadFileWrapperRepresentation:ofType: instead.
-    
-    if ( outError != NULL ) {
-		*outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
-	}
-    return YES;
 }
 
 @end
