@@ -30,7 +30,7 @@
 	<key>CFBundleIconFile</key>
 	<string>ISpendDocument</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.developstuff.RaiseMan</string>
+	<string>com.bignerdranch.RaiseMan</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

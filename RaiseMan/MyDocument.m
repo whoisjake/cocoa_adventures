@@ -8,6 +8,7 @@
 
 #import "MyDocument.h"
 #import "Person.h"
+#import "PreferenceController.h"
 
 @implementation MyDocument
 
@@ -17,13 +18,30 @@
     if (self) {
 		employees = [[NSMutableArray alloc] init];
     }
+	
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc addObserver:self
+		   selector:@selector(handleColorChange:)
+			   name:BNRColorChangedNotification
+			 object:nil];
+	NSLog(@"Registered with notification center");
+	
     return self;
 }
 
 - (void)dealloc
 {
 	[self setEmployees:nil];
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	[nc removeObserver:self];
 	[super dealloc];
+}
+
+- (void)handleColorChange:(NSNotification *)note
+{
+	NSLog(@"Recieved notification: %@",note);
+	NSColor *color = [[note userInfo] objectForKey:@"color"];
+	[tableView setBackgroundColor:color];
 }
 
 - (void)setEmployees:(NSMutableArray *)a
@@ -195,7 +213,11 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
     [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSData *colorAsData;
+	colorAsData = [defaults objectForKey:BNRTableBgColorKey];
+	[tableView setBackgroundColor:[NSKeyedUnarchiver unarchiveObjectWithData:colorAsData]];
 }
 
 @end
