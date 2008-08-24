@@ -170,6 +170,32 @@
 				   select:YES];
 }
 
+- (void)alertEnded:(NSAlert *)alert
+			  code:(int)code
+	   contextInfo:(void *)v
+{
+	if (code == NSAlertDefaultReturn) {
+		[employeeController remove:nil];
+	}
+}
+
+- (IBAction)removeEmployee:(id)sender
+{
+	NSArray *selectedPeople = [employeeController selectedObjects];
+	
+	NSAlert *alert = [NSAlert alertWithMessageText:NSLocalizedString(@"DELETE", @"Delete")
+									 defaultButton:NSLocalizedString(@"DELETE", @"Delete")
+								   alternateButton:NSLocalizedString(@"CANCEL", @"Cancel")
+									   otherButton:nil
+						 informativeTextWithFormat:NSLocalizedString(@"SURE_DELETE", @"Do you really want to delete %d people") ,
+					  [selectedPeople count]];
+	NSLog(@"started alert %@", alert);
+	[alert beginSheetModalForWindow:[tableView window]
+					  modalDelegate:self
+					 didEndSelector:@selector(alertEnded:code:contextInfo:)
+						contextInfo:nil];
+}
+
 - (NSData *)dataOfType:(NSString *)aType
 				 error:(NSError *)outError
 {
