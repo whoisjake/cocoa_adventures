@@ -8,21 +8,34 @@
 
 #import "BigLetterView.h"
 
-
 @implementation BigLetterView
 
 - (id)initWithFrame:(NSRect)frame {
     [super initWithFrame:frame];
 	NSLog(@"initWithFrame:");
+	[self prepareAttributes];
 	bgColor = [[NSColor yellowColor] retain];
 	string = @" ";
 	return self;
 }
+
 - (void)dealloc
 {
 	[bgColor release];
 	[string release];
+	[attributes release];
 	[super dealloc];
+}
+
+- (void)prepareAttributes
+{
+	attributes = [[NSMutableDictionary alloc] init];
+	
+	[attributes setObject:[NSFont fontWithName:@"Helvetica" size:75]
+				   forKey:NSFontAttributeName];
+	
+	[attributes setObject:[NSColor redColor]
+				   forKey:NSForegroundColorAttributeName];
 }
 
 #pragma mark Drawing
@@ -38,6 +51,8 @@
 	[bgColor set];
 	[NSBezierPath fillRect:bounds];
 	
+	[self drawStringCenteredIn:bounds];
+	
 	if (([[self window] firstResponder] == self) &&
 		([NSGraphicsContext currentContextDrawingToScreen])){
 		[NSGraphicsContext saveGraphicsState];
@@ -45,6 +60,15 @@
 		[NSBezierPath fillRect:bounds];
 		[NSGraphicsContext restoreGraphicsState];
 	}
+}
+
+- (void)drawStringCenteredIn:(NSRect)r
+{
+	NSSize strSize = [string sizeWithAttributes:attributes];
+	NSPoint strOrigin;
+	strOrigin.x = r.origin.x + (r.size.width - strSize.width)/2;
+	strOrigin.y = r.origin.y + (r.size.height - strSize.height)/2;
+	[string drawAtPoint:strOrigin withAttributes:attributes];
 }
 
 #pragma mark Keyboard Events
@@ -120,7 +144,42 @@
 	s = [s copy];
 	[string release];
 	string = s;
+	[self setNeedsDisplay:YES];
 	NSLog(@"the string is now %@", string);
+}
+
+- (IBAction)savePDF:(id)sender
+{
+	NSSavePanel *panel = [NSSavePanel savePanel];
+	[panel setRequiredFileType:@"pdf"];
+	[panel beginSheetForDirectory:nil 
+							 file:nil 
+				   modalForWindow:[self window]
+					modalDelegate:self 
+				   didEndSelector:@selector(didEnd:returnCode:contextInfo:) 
+					  contextInfo:NULL];
+}
+
+- (void) didEnd:(NSSavePanel *)sheet
+	 returnCode:(int)code
+	contextInfo:(void *)contextInfo
+{
+	if (code != NSOKButton)
+		return;
+	
+	NSRect r = [self bounds];
+	NSData *data = [self dataWithPDFInsideRect:r];
+	NSString *path = [sheet filename];
+	NSError *error;
+	BOOL successful = [data writeToFile:path
+								options:0
+								  error:&error];
+	
+	if(!successful)
+	{
+		NSAlert *a = [NSAlert alertWithError:error];
+		[a runModal];
+	}
 }
 
 @end
