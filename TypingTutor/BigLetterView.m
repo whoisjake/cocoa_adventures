@@ -7,6 +7,7 @@
 //
 
 #import "BigLetterView.h"
+#import "FirstLetter.h"
 
 @implementation BigLetterView
 
@@ -216,11 +217,8 @@
 	if ([types containsObject:NSStringPboardType])
 	{
 		NSString *value = [pb stringForType:NSStringPboardType];
-		if ([value length] == 1)
-		{
-			[self setString:value];
-			return YES;
-		}
+		[self setString:[value BNR_firstLetter]];
+		return YES;
 	}
 	return NO;
 }
