@@ -17,6 +17,7 @@
 	[self prepareAttributes];
 	bgColor = [[NSColor yellowColor] retain];
 	string = @" ";
+	[self registerForDraggedTypes:[NSArray arrayWithObject:NSStringPboardType]];
 	return self;
 }
 
@@ -39,6 +40,8 @@
 				   forKey:NSForegroundColorAttributeName];
 }
 
+#pragma mark CutNPaste
+
 - (IBAction)cut:(id)sender
 {
 	[self copy:sender];
@@ -60,6 +63,118 @@
 	}
 }
 
+#pragma mark DragNDrop
+
+- (NSDragOperation)draggingSourceOperationMaskForLocal:(BOOL)isLocal
+{
+	return NSDragOperationCopy | NSDragOperationDelete;
+}
+
+- (void)mouseDown:(NSEvent *)event
+{
+	[event retain];
+	[mouseDownEvent release];
+	mouseDownEvent = event;
+}
+
+- (void)mouseDragged:(NSEvent *)event
+{
+	NSPoint down = [mouseDownEvent locationInWindow];
+	NSPoint drag = [event locationInWindow];
+	float distance = hypot(down.x - drag.x, down.y - drag.y);
+	
+	if (distance < 3)
+		return;
+	
+	if ([string length] == 0)
+		return;
+	
+	NSSize s = [string sizeWithAttributes:attributes];
+	NSImage *anImage = [[NSImage alloc] initWithSize:s];
+	NSRect imageBounds;
+	imageBounds.origin = NSZeroPoint;
+	imageBounds.size = s;
+	
+	[anImage lockFocus];
+	[self drawStringCenteredIn:imageBounds];
+	[anImage unlockFocus];
+	
+	NSPoint p = [self convertPoint:down fromView:nil];
+	p.x = p.x - s.width/2;
+	p.y = p.y - s.height/2;
+	
+	NSPasteboard *pb = [NSPasteboard pasteboardWithName:NSDragPboard];
+	[self writeToPasteboard:pb];
+	
+	[self dragImage:anImage
+				 at:p
+			 offset:NSMakeSize(0,0)
+			  event:mouseDownEvent
+		 pasteboard:pb
+			 source:self
+		  slideBack:YES];
+	
+	[anImage release];
+}
+
+- (void)draggedImage:(NSImage *)image
+			 endedAt:(NSPoint)screenPoint
+		   operation:(NSDragOperation)operation
+{
+	if (operation == NSDragOperationDelete)
+		[self setString:@""];
+}
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender
+{
+	NSLog(@"draggingEntered:");
+	if ([sender draggingSource] == self)
+		return NSDragOperationNone;
+	
+	highlighted = YES;
+	[self setNeedsDisplay:YES];
+	return NSDragOperationCopy;
+}
+
+- (void)draggingExited:(id <NSDraggingInfo>)sender
+{
+	NSLog(@"draggingExited");
+	highlighted = NO;
+	[self setNeedsDisplay:YES];
+}
+
+- (BOOL)prepareForDragOperation:(id <NSDraggingInfo>)sender
+{
+	return YES;
+}
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender
+{
+	NSPasteboard *pb = [sender draggingPasteboard];
+	if (![self readFromPasteboard:pb])
+	{
+		NSLog(@"Error: Could not read from dragging pasteboard");
+		return NO;
+	}
+	return YES;
+}
+
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender
+{
+	NSLog(@"concludeDragOperation");
+	highlighted = NO;
+	[self setNeedsDisplay:YES];
+}
+
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender
+{
+	NSDragOperation op = [sender draggingSourceOperationMask];
+	NSLog(@"operation mask = %d", op);
+	if ([sender draggingSource] == self)
+		return NSDragOperationNone;
+	return NSDragOperationCopy;
+}
+
 #pragma mark Drawing
 
 - (BOOL)isOpaque
@@ -72,6 +187,17 @@
     NSRect bounds = [self bounds];
 	[bgColor set];
 	[NSBezierPath fillRect:bounds];
+	
+	if (highlighted) {
+		NSGradient *gr;
+		gr = [[NSGradient alloc] initWithStartingColor:[NSColor whiteColor]	endingColor:bgColor];
+		[gr drawInRect:bounds relativeCenterPosition:NSZeroPoint];
+		[gr release];
+	}
+	else {
+		[bgColor set];
+		[NSBezierPath fillRect:bounds];
+	}
 	
 	[self drawStringCenteredIn:bounds];
 	
