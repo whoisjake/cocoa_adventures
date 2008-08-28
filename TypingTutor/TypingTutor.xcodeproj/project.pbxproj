@@ -10,6 +10,7 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		231293AF0E65B44F00570A67 /* FirstLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 231293AE0E65B44F00570A67 /* FirstLetter.m */; };
 		23ADF4270E6394F300F58DB4 /* BigLetterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23ADF4260E6394F300F58DB4 /* BigLetterView.m */; };
+		23EEE6B10E6742CC000BFEB6 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EEE6B00E6742CC000BFEB6 /* AppController.m */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -24,6 +25,8 @@
 		231293AE0E65B44F00570A67 /* FirstLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLetter.m; sourceTree = "<group>"; };
 		23ADF4250E6394F300F58DB4 /* BigLetterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigLetterView.h; sourceTree = "<group>"; };
 		23ADF4260E6394F300F58DB4 /* BigLetterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigLetterView.m; sourceTree = "<group>"; };
+		23EEE6AF0E6742CC000BFEB6 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		23EEE6B00E6742CC000BFEB6 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -51,6 +54,8 @@
 				23ADF4260E6394F300F58DB4 /* BigLetterView.m */,
 				231293AD0E65B44F00570A67 /* FirstLetter.h */,
 				231293AE0E65B44F00570A67 /* FirstLetter.m */,
+				23EEE6AF0E6742CC000BFEB6 /* AppController.h */,
+				23EEE6B00E6742CC000BFEB6 /* AppController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				23ADF4270E6394F300F58DB4 /* BigLetterView.m in Sources */,
 				231293AF0E65B44F00570A67 /* FirstLetter.m in Sources */,
+				23EEE6B10E6742CC000BFEB6 /* AppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
