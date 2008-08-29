@@ -10,7 +10,6 @@
 #import "BigLetterView.h"
 
 #define MAX_COUNT (100)
-#define COUNT_STEP (5)
 
 @implementation AppController
 
@@ -21,6 +20,7 @@
 	letters = [[NSArray alloc] initWithObjects:@"a",@"s",@"d",@"f",@"j",@"k",@"l",@";", nil];
 	
 	srandom(time(NULL));
+	stepSize = 5;
 	return self;
 }
 
@@ -39,7 +39,7 @@
 - (void)incrementCount
 {
 	[self willChangeValueForKey:@"count"];
-	count = count + COUNT_STEP;
+	count = count + stepSize;
 	if (count > MAX_COUNT)
 		count = MAX_COUNT;
 	[self didChangeValueForKey:@"count"];
@@ -85,6 +85,21 @@
 	} else {
 		[self incrementCount];
 	}
+}
+
+- (IBAction)showSpeedSheet:(id)sender
+{
+	[NSApp beginSheet:speedSheet
+	   modalForWindow:[inLetterView window]
+		modalDelegate:nil
+	   didEndSelector:NULL
+		  contextInfo:NULL];
+}
+
+- (IBAction)endSpeedSheet:(id)sender
+{
+	[NSApp endSheet:speedSheet];
+	[speedSheet orderOut:sender];
 }
 
 @end
