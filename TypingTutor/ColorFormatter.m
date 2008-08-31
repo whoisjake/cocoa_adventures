@@ -2,8 +2,8 @@
 //  ColorFormatter.m
 //  TypingTutor
 //
-//  Created by Aaron Hillegass on 10/23/07.
-//  Copyright 2007 __MyCompanyName__. All rights reserved.
+//  Created by Jacob Good on 8/31/08.
+//  Copyright 2008 Jacob Good. All rights reserved.
 //
 
 #import "ColorFormatter.h"

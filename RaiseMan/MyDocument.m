@@ -9,6 +9,7 @@
 #import "MyDocument.h"
 #import "Person.h"
 #import "PreferenceController.h"
+#import "PeopleView.h"
 
 @implementation MyDocument
 
@@ -244,6 +245,16 @@
 	NSData *colorAsData;
 	colorAsData = [defaults objectForKey:BNRTableBgColorKey];
 	[tableView setBackgroundColor:[NSKeyedUnarchiver unarchiveObjectWithData:colorAsData]];
+}
+
+- (NSPrintOperation *)printOperationWithSettings:(NSDictionary *)ps
+											erro:(NSError **)e
+{
+	PeopleView *view = [[PeopleView alloc] initWithPeople:employees];
+	NSPrintInfo *printInfo = [self printInfo];
+	NSPrintOperation *printOp = [NSPrintOperation printOperationWithView:view printInfo:printInfo];
+	[view release];
+	return printOp;
 }
 
 @end
