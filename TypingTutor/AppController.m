@@ -74,6 +74,14 @@
 	}
 }
 
+- (BOOL)control:(NSControl *)control
+didFailToFormatString:(NSString *)string
+errorDescription:(NSString *)error
+{
+	NSLog(@"AppController told that formatting of %@ failed; %@", string, error);
+	return NO;
+}
+
 - (void)checkThem:(NSTimer *)aTimer
 {
 	if([[inLetterView string] isEqual:[outLetterView string]]){
