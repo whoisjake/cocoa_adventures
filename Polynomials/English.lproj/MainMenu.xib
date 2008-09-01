@@ -1118,14 +1118,15 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSCustomView" id="450133857">
 							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{20, 51}, {440, 289}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<string key="NSClassName">PolynomialView</string>
 						</object>
 						<object class="NSButton" id="881817803">
 							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">256</int>
 							<string key="NSFrame">{{20, 19}, {118, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
@@ -1149,7 +1150,7 @@
 						</object>
 						<object class="NSButton" id="419042246">
 							<reference key="NSNextResponder" ref="439893737"/>
-							<int key="NSvFlags">268</int>
+							<int key="NSvFlags">256</int>
 							<string key="NSFrame">{{146, 19}, {137, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<bool key="NSEnabled">YES</bool>
@@ -1159,6 +1160,26 @@
 								<string key="NSContents">Remove Polynomial</string>
 								<reference key="NSSupport" ref="938167588"/>
 								<reference key="NSControlView" ref="419042246"/>
+								<int key="NSButtonFlags">-2038152961</int>
+								<int key="NSButtonFlags2">163</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">400</int>
+								<int key="NSPeriodicInterval">75</int>
+							</object>
+						</object>
+						<object class="NSButton" id="18155468">
+							<reference key="NSNextResponder" ref="439893737"/>
+							<int key="NSvFlags">256</int>
+							<string key="NSFrame">{{291, 19}, {118, 25}}</string>
+							<reference key="NSSuperview" ref="439893737"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="376653903">
+								<int key="NSCellFlags">-2080244224</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents">Blast</string>
+								<reference key="NSSupport" ref="938167588"/>
+								<reference key="NSControlView" ref="18155468"/>
 								<int key="NSButtonFlags">-2038152961</int>
 								<int key="NSButtonFlags2">163</int>
 								<string key="NSAlternateContents"/>
@@ -1724,6 +1745,14 @@
 						<reference key="destination" ref="419042246"/>
 					</object>
 					<int key="connectionID">456</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">blastem:</string>
+						<reference key="source" ref="450133857"/>
+						<reference key="destination" ref="18155468"/>
+					</object>
+					<int key="connectionID">463</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2314,6 +2343,7 @@
 							<reference ref="450133857"/>
 							<reference ref="881817803"/>
 							<reference ref="419042246"/>
+							<reference ref="18155468"/>
 						</object>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -2660,6 +2690,20 @@
 						<reference key="object" ref="106213409"/>
 						<reference key="parent" ref="419042246"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">461</int>
+						<reference key="object" ref="18155468"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="376653903"/>
+						</object>
+						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">462</int>
+						<reference key="object" ref="376653903"/>
+						<reference key="parent" ref="18155468"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -2857,6 +2901,8 @@
 					<string>452.IBPluginDependency</string>
 					<string>453.IBPluginDependency</string>
 					<string>454.IBPluginDependency</string>
+					<string>461.IBPluginDependency</string>
+					<string>462.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.ImportedFromIB2</string>
 					<string>56.IBPluginDependency</string>
@@ -3004,7 +3050,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{377, 296}, {478, 20}}</string>
+					<string>{{327, 296}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{74, 862}</string>
@@ -3087,10 +3133,12 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{389, 113}, {245, 183}}</string>
+					<string>{{339, 113}, {245, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -3143,7 +3191,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">456</int>
+			<int key="maxID">463</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3155,11 +3203,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>blastem:</string>
 							<string>createNewPolynomial:</string>
 							<string>deleteRandomPolynomial:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
