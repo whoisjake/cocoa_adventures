@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2384F6D90E6C54880021E444 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384F6D60E6C54880021E444 /* Employee.m */; };
+		2384F6DA0E6C54880021E444 /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384F6D80E6C54880021E444 /* Department.m */; };
 		23E2B43D0E6B542900B2CFC0 /* ManagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E2B43C0E6B542900B2CFC0 /* ManagingViewController.m */; };
 		23E2B4400E6B54C400B2CFC0 /* DepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E2B43F0E6B54C400B2CFC0 /* DepartmentViewController.m */; };
 		23E2B4420E6B54EC00B2CFC0 /* DepartmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23E2B4410E6B54EC00B2CFC0 /* DepartmentView.xib */; };
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2384F6D50E6C54880021E444 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
+		2384F6D60E6C54880021E444 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		2384F6D70E6C54880021E444 /* Department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department.h; sourceTree = "<group>"; };
+		2384F6D80E6C54880021E444 /* Department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department.m; sourceTree = "<group>"; };
 		23E2B43B0E6B542900B2CFC0 /* ManagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagingViewController.h; sourceTree = "<group>"; };
 		23E2B43C0E6B542900B2CFC0 /* ManagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagingViewController.m; sourceTree = "<group>"; };
 		23E2B43E0E6B54C400B2CFC0 /* DepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentViewController.h; sourceTree = "<group>"; };
@@ -149,6 +155,10 @@
 		E1B74B1A0667B4A90069E3BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2384F6D50E6C54880021E444 /* Employee.h */,
+				2384F6D60E6C54880021E444 /* Employee.m */,
+				2384F6D70E6C54880021E444 /* Department.h */,
+				2384F6D80E6C54880021E444 /* Department.m */,
 				775BDEF0067A8BF0009058FE /* MyDocument.xcdatamodel */,
 			);
 			name = Models;
@@ -219,6 +229,8 @@
 				23E2B43D0E6B542900B2CFC0 /* ManagingViewController.m in Sources */,
 				23E2B4400E6B54C400B2CFC0 /* DepartmentViewController.m in Sources */,
 				23E2B4460E6B559E00B2CFC0 /* EmployeeViewController.m in Sources */,
+				2384F6D90E6C54880021E444 /* Employee.m in Sources */,
+				2384F6DA0E6C54880021E444 /* Department.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,6 @@
 
 #import "EmployeeViewController.h"
 
-
 @implementation EmployeeViewController
 
 - (id)init
@@ -20,5 +19,12 @@
 	return self;
 }
 
+- (void)keyDown:(NSEvent *)e
+{
+	if ([e keyCode] == 51)
+		[employeeController remove:nil];
+	else
+		[super keyDown:e];
+}
 
 @end

@@ -10,7 +10,7 @@
 #import "ManagingViewController.h"
 
 @interface EmployeeViewController : ManagingViewController {
-
+	IBOutlet NSArrayController *employeeController;
 }
 
 @end
